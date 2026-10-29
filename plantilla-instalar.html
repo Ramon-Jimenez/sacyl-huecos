@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marcador cita SACYL</title>
+<style>
+:root { --bg:#f6f8fb; --fg:#1d2733; --muted:#5b6878; --card:#fff; --line:#d5dde7; --acc:#1f6fd1; }
+@media (prefers-color-scheme: dark) { :root { --bg:#14181e; --fg:#e6ebf1; --muted:#9aa6b4; --card:#1d232b; --line:#2f3843; --acc:#5b9cf0; } }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,sans-serif; }
+main { max-width:640px; margin:40px auto; padding:0 16px; }
+h1 { font-size:24px; margin:0 0 4px; } p.sub { color:var(--muted); margin:0 0 24px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px; margin-bottom:16px; }
+.drag { display:inline-block; padding:10px 18px; background:var(--acc); color:#fff; border-radius:8px; font-weight:600; text-decoration:none; cursor:grab; }
+ol { padding-left:20px; margin:0; } li { margin:6px 0; }
+button { font:inherit; padding:6px 12px; border:1px solid var(--line); background:transparent; color:var(--fg); border-radius:6px; cursor:pointer; }
+small { color:var(--muted); }
+</style></head><body><main>
+<h1>Huecos libres en Cita Previa SACYL</h1>
+<p class="sub">Un marcador que muestra todos los huecos libres de tu médico o enfermera, no solo el siguiente.</p>
+<div class="card"><b>1. Instalar (solo una vez)</b>
+<ol>
+<li>Muestra la barra de marcadores del navegador (Ctrl+Mayús+B).</li>
+<li>Arrastra este botón hasta la barra: <a class="drag" href="{{MARCADOR}}">Huecos SACYL</a></li>
+</ol>
+<p><small>Si no puedes arrastrarlo: <button id="copiar">Copiar código</button>, crea un marcador nuevo y pega el código en el campo URL.</small></p>
+</div>
+<div class="card"><b>2. Usar</b>
+<ol>
+<li>Abre <a href="https://citaweb.saludcastillayleon.es/CitaPreviaWeb/#/start">Cita Previa SACYL</a> y pulsa el marcador <b>Huecos SACYL</b>.</li>
+<li>Toca el nombre de la persona. Se rellenan su CIPA y su apellido. La primera vez, añade a cada persona con "Añadir persona".</li>
+<li>Escribe el captcha y pulsa <b>Acceder</b>.</li>
+<li>Ya dentro, pulsa otra vez el marcador. Se abre el panel de huecos encima de la misma página.</li>
+<li>Elige profesional y fechas, y pulsa <b>Buscar huecos</b>. Para reservar, elige el motivo y toca la hora. Te pide confirmación antes.</li>
+</ol>
+<p><small>Pulsar el marcador otra vez, o la ✕, cierra el panel. Las personas se guardan solo en el navegador donde las añades: en el móvil hay que añadirlas una vez también.</small></p>
+</div>
+<div class="card"><b>En el móvil (Chrome para Android)</b>
+<ol>
+<li>Si usas Chrome con tu cuenta de Google en el ordenador y en el móvil, el marcador aparece solo en el móvil.</li>
+<li>Para pulsarlo, no lo abras desde el menú de Marcadores: toca la barra de direcciones, escribe <b>Huecos</b> y toca la sugerencia con la estrella.</li>
+<li>El panel ocupa toda la pantalla. No hay que cambiar de pestaña ni de aplicación.</li>
+</ol>
+</div>
+</main>
+<script>
+document.getElementById("copiar").onclick = async e => {
+  try { await navigator.clipboard.writeText(document.querySelector(".drag").href); e.target.textContent = "Copiado"; }
+  catch (err) { e.target.textContent = "No se pudo copiar"; }
+};
+</script></body></html>

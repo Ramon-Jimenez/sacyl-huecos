@@ -1,0 +1,102 @@
+<title>Marcador de huecos SACYL</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+  /* Una columna estrecha para leer en el móvil, pasos numerados porque el orden importa. */
+  :root {
+    --bg: #f4f7f8; --card: #ffffff; --fg: #18252b; --muted: #55666e; --line: #d3dee2;
+    --accent: #0f6e7a; --accent-fg: #ffffff; --code-bg: #eaf0f2; --ok: #1b7a45;
+    --font: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11191c; --card: #19242833; --fg: #e3ecef; --muted: #9db0b7; --line: #2c3b40;
+      --accent: #5cc2cd; --accent-fg: #0b1a1d; --code-bg: #1d2a2e; --ok: #6fd39a; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #11191c; --card: #19242833; --fg: #e3ecef; --muted: #9db0b7; --line: #2c3b40;
+    --accent: #5cc2cd; --accent-fg: #0b1a1d; --code-bg: #1d2a2e; --ok: #6fd39a; color-scheme: dark;
+  }
+  body { background: var(--bg); color: var(--fg); font: 17px/1.55 var(--font); }
+  main {
+    max-width: 560px; margin: 0 auto; padding-block: 28px 48px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  h1 { font-size: 26px; line-height: 1.2; margin: 0; text-wrap: balance; }
+  .sub { color: var(--muted); margin: 6px 0 0; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  h2 { font-size: 18px; margin: 0 0 10px; }
+  ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+  b, strong { font-weight: 700; }
+  .copiar { display: flex; flex-direction: column; gap: 10px; }
+  button {
+    font: inherit; font-weight: 700; padding: 12px 16px; border-radius: 10px; border: 0;
+    background: var(--accent); color: var(--accent-fg); cursor: pointer;
+  }
+  button:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  #aviso { min-height: 1.5em; margin: 0; color: var(--ok); font-weight: 700; }
+  textarea {
+    width: 100%; height: 88px; resize: vertical; font: 12px/1.4 var(--mono); color: var(--fg);
+    background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; word-break: break-all;
+  }
+  .campo { font-family: var(--mono); font-size: 15px; background: var(--code-bg); padding: 1px 6px; border-radius: 4px; }
+  .nota { color: var(--muted); font-size: 15px; margin: 10px 0 0; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main>
+  <header>
+    <h1>Marcador de huecos SACYL</h1>
+    <p class="sub">Para ver todos los huecos libres de Cita Previa desde el móvil, sin depender de la sincronización de Chrome.</p>
+  </header>
+
+  <section class="copiar" aria-labelledby="t1">
+    <h2 id="t1">1. Copia el código</h2>
+    <button id="btnCopiar" type="button">Copiar código del marcador</button>
+    <p id="aviso" role="status"></p>
+    <textarea id="codigo" readonly aria-label="Código del marcador">{{MARCADOR}}</textarea>
+    <p class="nota">Si el botón no funciona, mantén pulsado el cuadro, elige "Seleccionar todo" y luego "Copiar".</p>
+  </section>
+
+  <section aria-labelledby="t2">
+    <h2 id="t2">2. Crea el marcador en Chrome</h2>
+    <ol>
+      <li>En esta misma página, toca el menú <b>⋮</b> de Chrome y luego la <b>estrella</b>.</li>
+      <li>Abajo aparece "Añadido a marcadores". Toca <b>Editar</b>. Si no lo ves, vuelve a tocar ⋮ y la estrella (ahora azul).</li>
+      <li>En <span class="campo">Nombre</span> escribe <b>Huecos SACYL</b>.</li>
+      <li>En <span class="campo">URL</span> borra lo que hay y pega el código.</li>
+      <li>Mira el principio de la URL: tiene que empezar por <span class="campo">javascript:</span>. Chrome a veces lo quita al pegar. Si falta, escríbelo tú al principio, sin espacios.</li>
+      <li>Toca la flecha atrás para guardar.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="t3">
+    <h2 id="t3">3. Úsalo</h2>
+    <ol>
+      <li>Abre <a href="https://citaweb.saludcastillayleon.es/CitaPreviaWeb/#/start">Cita Previa SACYL</a> en Chrome.</li>
+      <li>Toca la barra de direcciones, escribe <b>Huecos</b> y toca la sugerencia con la estrella.</li>
+      <li>Toca el nombre de la persona. Escribe el captcha y pulsa Acceder.</li>
+      <li>Repite el paso 2 para abrir el panel de huecos y buscar.</li>
+    </ol>
+    <p class="nota">Desde el menú de Marcadores no funciona: Chrome para Android solo lo ejecuta desde la barra de direcciones. Las personas se guardan en el móvil la primera vez que las añades con "Añadir persona".</p>
+  </section>
+</main>
+
+<script>
+  const btn = document.getElementById("btnCopiar");
+  const area = document.getElementById("codigo");
+  const aviso = document.getElementById("aviso");
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(area.value);
+      aviso.textContent = "Copiado. Sigue con el paso 2.";
+    } catch (e) {
+      area.focus();
+      area.select();
+      aviso.textContent = "Código seleccionado. Toca Copiar en el menú que aparece.";
+    }
+  });
+</script>
